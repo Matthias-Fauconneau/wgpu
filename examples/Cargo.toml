@@ -49,6 +49,7 @@ wgpu = { workspace = true, default-features = false, features = [
     "metal",
 ] }
 winit.workspace = true
+half = { version = "2.1.0", features=["bytemuck"]}
 
 [dev-dependencies]
 wgpu-test.workspace = true

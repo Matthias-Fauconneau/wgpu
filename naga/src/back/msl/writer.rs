@@ -8,6 +8,9 @@ use crate::{
 };
 #[cfg(test)]
 use std::ptr;
+use bit_set::BitSet;
+use half::f16;
+use num_traits::real::Real;
 use std::{
     fmt::{Display, Error as FmtError, Formatter, Write},
     iter,
@@ -384,8 +387,12 @@ impl crate::Scalar {
         match self {
             Self {
                 kind: Sk::Float,
-                width: _,
+                width: 4 | 8,
             } => "float",
+            Self {
+                kind: Sk::Float,
+                width: 2,
+            } => "half",
             Self {
                 kind: Sk::Sint,
                 width: 4,
@@ -1285,6 +1292,21 @@ impl<W: Write> Writer<W> {
             crate::Expression::Literal(literal) => match literal {
                 crate::Literal::F64(_) => {
                     return Err(Error::CapabilityNotSupported(valid::Capabilities::FLOAT64))
+                }
+                crate::Literal::F16(value) => {
+                    if value.is_infinite() {
+                        let sign = if value.is_sign_negative() { "-" } else { "" };
+                        write!(self.out, "{sign}INFINITY")?;
+                    } else if value.is_nan() {
+                        write!(self.out, "NAN")?;
+                    } else {
+                        let suffix = if value.fract() == f16::from_f32(0.0) {
+                            ".0"
+                        } else {
+                            ""
+                        };
+                        write!(self.out, "{value}{suffix}")?;
+                    }
                 }
                 crate::Literal::F32(value) => {
                     if value.is_infinite() {

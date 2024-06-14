@@ -387,7 +387,7 @@ impl crate::Scalar {
         match self {
             Self {
                 kind: Sk::Float,
-                width: 4 | 8,
+                width: 4,
             } => "float",
             Self {
                 kind: Sk::Float,
@@ -1301,9 +1301,9 @@ impl<W: Write> Writer<W> {
                         write!(self.out, "NAN")?;
                     } else {
                         let suffix = if value.fract() == f16::from_f32(0.0) {
-                            ".0"
+                            ".0h"
                         } else {
-                            ""
+                            "h"
                         };
                         write!(self.out, "{value}{suffix}")?;
                     }

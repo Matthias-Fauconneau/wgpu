@@ -814,7 +814,7 @@ fn dispatch(state: &mut State, groups: [u32; 3]) -> Result<(), ComputePassErrorI
 
     state.flush_states(None)?;
 
-    let groups_size_limit = state.device.limits.max_compute_workgroups_per_dimension;
+    /*let groups_size_limit = state.device.limits.max_compute_workgroups_per_dimension;
 
     if groups[0] > groups_size_limit
         || groups[1] > groups_size_limit
@@ -826,7 +826,7 @@ fn dispatch(state: &mut State, groups: [u32; 3]) -> Result<(), ComputePassErrorI
                 limit: groups_size_limit,
             },
         ));
-    }
+    }*/
 
     unsafe {
         state.raw_encoder.dispatch(groups);

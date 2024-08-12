@@ -1061,8 +1061,7 @@ impl PhysicalDeviceProperties {
                 .max_uniform_buffer_range
                 .min(crate::auxil::MAX_I32_BINDING_SIZE),
             max_storage_buffer_binding_size: limits
-                .max_storage_buffer_range
-                .min(crate::auxil::MAX_I32_BINDING_SIZE),
+                .max_storage_buffer_range,
             max_vertex_buffers: limits
                 .max_vertex_input_bindings
                 .min(crate::MAX_VERTEX_BUFFERS as u32),

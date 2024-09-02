@@ -829,8 +829,6 @@ impl Writer {
                         .insert(spirv::Capability::StorageBuffer16BitAccess);
                     self.capabilities_used
                         .insert(spirv::Capability::UniformAndStorageBuffer16BitAccess);
-                    self.capabilities_used
-                        .insert(spirv::Capability::StorageInputOutput16);
                 }
                 Instruction::type_float(id, bits)
             }

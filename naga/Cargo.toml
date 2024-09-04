@@ -81,7 +81,7 @@ petgraph = { version = "0.6", optional = true }
 pp-rs = { version = "0.2.1", optional = true }
 hexf-parse = { version = "0.2.1", optional = true }
 unicode-xid = { version = "0.2.5", optional = true }
-arrayvec.workspace = true
+
 half = { git = "https://github.com/FL33TW00D/half-rs.git",  branch="feature/arbitrary", features=["arbitrary", "num-traits"] }
 num-traits = "0.2"
 smallvec = { workspace = true, features=["const_new"] }

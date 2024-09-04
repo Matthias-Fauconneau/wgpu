@@ -5,24 +5,8 @@ Backend functions that export shader [`Module`](super::Module)s into binary and 
 
 use crate::proc::ExpressionKindTracker;
 
-#[cfg(dot_out)]
-pub mod dot;
-#[cfg(glsl_out)]
-pub mod glsl;
-#[cfg(hlsl_out)]
-pub mod hlsl;
-#[cfg(msl_out)]
-pub mod msl;
-#[cfg(spv_out)]
 pub mod spv;
-#[cfg(wgsl_out)]
-pub mod wgsl;
-
-#[cfg(any(hlsl_out, msl_out, spv_out, glsl_out))]
 pub mod pipeline_constants;
-
-#[cfg(any(hlsl_out, glsl_out))]
-mod continue_forward;
 
 /// Names of vector components.
 pub const COMPONENTS: &[char] = &['x', 'y', 'z', 'w'];
